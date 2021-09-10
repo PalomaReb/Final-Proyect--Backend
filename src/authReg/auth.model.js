@@ -1,8 +1,6 @@
 import { MongoClient } from 'mongodb';
-import nodemailer from 'nodemailer'
+import { URL, MyDDBB } from '../config/bbdd.js'
 
-
-const URL = 'mongodb+srv://palomiiiita:mypassword@cluster0.h80zk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 
 //--------------modelReg---------------------------------
@@ -14,7 +12,7 @@ export const validateReg = async (user) => {
     };
     const client = await MongoClient.connect(URL);
     const data = await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("user-register")
         .find(loginValue)
         .toArray();
@@ -47,27 +45,6 @@ export const insertToken = async (user, token) => {
         .db("FinalProyectDDBB")
         .collection("user-token")
         .insertOne(loginValue)
-
-    //-----------------SEND EMAIL------------------------//
-    const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'code.or.die2021@gmail.com',
-            pass: 'kinwhqugrlbdqwuf',
-        },
-        tls: {
-            rejectUnauthorized: false
-        }
-    });
-    await transporter.sendMail({
-        from: 'code.or.die2021@gmail.com',
-        to: user,
-        subject: 'Message',
-        html: '<p><b>Hola</p>' +
-            `<p> Gracias por registrarte, verifica el email  <a href="http://localhost:3000/login?token=${token}">Verificar</a>`,
-    })
 }
 
 export const validateToken = async (token) => {

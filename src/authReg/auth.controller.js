@@ -2,6 +2,7 @@ import { createUser, insertToken, validateToken, updateTokenUser, deleteToken } 
 import { generateRandomEmailToken, encodePassword } from "./crypto.js";
 import { getUserInfoByIdAndPassword } from '../user/user.model.js'
 import jwt from "jsonwebtoken";
+import { sendMail } from './adapters/mail.js'
 import { secret } from './auth.secret.js'
 
 /**
@@ -11,13 +12,16 @@ export const registerUserController = async (req, res) => {
 
     const passEncoded = encodePassword(req.body.password);
 
-    createUser(req.body.email, passEncoded);
+    await createUser(req.body.email, passEncoded);
 
     const encodedToken = generateRandomEmailToken();
     console.log('esto es el token' + encodedToken)
 
-    await insertToken(req.body.email, encodedToken);
+    insertToken(req.body.email, encodedToken);
 
+    sendMail(req.body.email, 'WELCOME??????????????', '<p><b>Hello user</p>' +
+        `<p> If you want to survive, click on this link. <a href="http://localhost:3000/login?token=${encodedToken}">LINK</a>`)
+    res.status(201).send('creadito')
 }
 export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no
@@ -38,8 +42,6 @@ export const validateUserController = async (req, res) => {
     }
 
 }
-
-
 export const loginJWTController = async (req, res) => {
     // deconstrucción del objeto body para quedarme con sus atributos
     // email, password

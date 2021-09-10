@@ -1,4 +1,5 @@
 import registerRouter from './src/authReg/auth.router.js'
+import gamesRouter from './src/games/games.router.js'
 import express from "express";
 import cors from 'cors';
 
@@ -12,6 +13,8 @@ app.use(cors());
 
 app.use("/auth", registerRouter)
 // app.use('/user',)
+
+app.use("/games", gamesRouter)
 
 app.listen(port, () => {
     console.log(`Welcome to hell, port number:  ${port}`);

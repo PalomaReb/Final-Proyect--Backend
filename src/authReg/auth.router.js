@@ -15,5 +15,4 @@ router.route('/validate')
 router.route('/login')
     .post(loginJWTController)
 
-
 export default router;
