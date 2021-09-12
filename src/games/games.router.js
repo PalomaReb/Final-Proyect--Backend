@@ -1,9 +1,13 @@
 import express from 'express'
-import { gameController } from './games.controller.js';
+import { gameController, progressController } from './games.controller.js';
 
 const gamesRouter = express.Router();
 
 gamesRouter.route('/:id')
-    .get(gameController)
+    .get(gameController);
+
+gamesRouter.route('/user-progress')
+    .post(progressController);
+
 
 export default gamesRouter;

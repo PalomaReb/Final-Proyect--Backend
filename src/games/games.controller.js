@@ -1,4 +1,4 @@
-import { findGameById } from './games.model.js'
+import { findGameById, insertUserProgressInDDBB } from './games.model.js'
 
 export const gameController = async (req, res) => {
     console.log(req.params.id)
@@ -13,17 +13,10 @@ export const gameController = async (req, res) => {
 }
 
 
+export const progressController = async (req, res) => {
+    const gameProgress = await insertUserProgressInDDBB(req.body);
+    console.log(req.body);
+    res.status(201).send('progreso de usuario metido con exito');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+}
