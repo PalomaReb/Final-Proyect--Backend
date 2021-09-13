@@ -2,7 +2,7 @@ import { createUser, insertToken, validateToken, updateTokenUser, deleteToken } 
 import { generateRandomEmailToken, encodePassword } from "./crypto.js";
 import { getUserInfoByIdAndPassword } from '../user/user.model.js'
 import jwt from "jsonwebtoken";
-import { sendMail } from './adapters/mail.js'
+import { sendMail } from '../adapters/mail.js'
 import { secret } from './auth.secret.js'
 
 /**

@@ -1,8 +1,7 @@
-import { loginJWTController } from './auth.controller.js'
 import { isValidateReg } from './auth.middleware.js'
 import express from 'express';
 // importo el controller para gestionar el login
-import { registerUserController, validateUserController } from './auth.controller.js'
+import { loginJWTController, registerUserController, validateUserController } from './auth.controller.js'
 
 const router = express.Router();
 

@@ -14,10 +14,9 @@ export const validateReg = async (user) => {
     const data = await client
         .db(MyDDBB)
         .collection("user-register")
-        .find(loginValue)
-        .toArray();
+        .findOne(loginValue)
     client.close();
-    return data.length > 0;
+    return data !== null;
 }
 
 export const createUser = async (user, password) => {
