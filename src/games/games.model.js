@@ -17,10 +17,10 @@ export const findGameById = async (id) => {
 }
 
 export const insertUserProgressInDDBB = async (gameList, userProgress) => {
-    const userGameProgress = {
+    const userGameProgress = [{
         gameList: gameList,
         userProgress: userProgress,
-    };
+    }];
     console.log(userGameProgress);
     const client = await MongoClient.connect(URL);
     const data = await client
@@ -28,6 +28,5 @@ export const insertUserProgressInDDBB = async (gameList, userProgress) => {
         .collection("user-game-progress")
         .insertOne(userGameProgress);
     client.close();
-
-
 }
+

@@ -12,16 +12,16 @@ export const registerUserController = async (req, res) => {
 
     const passEncoded = encodePassword(req.body.password);
 
-    await createUser(req.body.email, passEncoded);
+    await createUser(req.body.email, passEncoded, req.body.alias);
 
     const encodedToken = generateRandomEmailToken();
     console.log('esto es el token' + encodedToken)
 
-    insertToken(req.body.email, encodedToken);
+    insertToken(req.body.email, encodedToken,);
 
     sendMail(req.body.email, 'WELCOME??????????????', '<p><b>Hello user</p>' +
         `<p> If you want to survive, click on this link. <a href="http://localhost:3000/login?token=${encodedToken}">LINK</a>`)
-    res.status(201).send('creadito')
+    res.send('check')
 }
 export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no

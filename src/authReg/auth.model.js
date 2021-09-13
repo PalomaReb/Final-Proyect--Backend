@@ -19,10 +19,11 @@ export const validateReg = async (user) => {
     return data !== null;
 }
 
-export const createUser = async (user, password) => {
+export const createUser = async (user, password, alias) => {
     const loginValue = {
         email: user,
         password: password,
+        alias: alias,
         type: 'PENDING'
     };
     const client = await MongoClient.connect(URL);
