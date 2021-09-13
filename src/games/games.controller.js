@@ -13,8 +13,8 @@ export const gameController = async (req, res) => {
 }
 
 
-export const progressController = async (req, res) => {
-    const gameProgress = await insertUserProgressInDDBB(req.body);
+export const progressController = (req, res) => {
+    insertUserProgressInDDBB(req.body);
     console.log(req.body);
     res.status(201).send('progreso de usuario metido con exito');
 

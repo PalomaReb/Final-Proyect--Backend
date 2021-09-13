@@ -3,7 +3,7 @@ import gamesRouter from './src/games/games.router.js'
 import express from "express";
 import cors from 'cors';
 
-const port = 5463;
+const port = 5464;
 
 const app = express();
 app.use(express.json());
