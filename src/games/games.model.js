@@ -24,3 +24,23 @@ export const insertUserProgressInDDBB = async (newUserProgress) => {
         .insertOne(newUserProgress);
     client.close();
 }
+
+
+export const updateUserArraybyID = async (email, gameList) => {
+    const query = {
+        email: email
+    }
+    const pushArray = {
+        $push: {
+            gameList: gameList,
+        }
+    }
+    console.log(pushArray)
+
+    const client = await MongoClient.connect(URL)
+    await client
+        .db("FinalProyectDDBB")
+        .collection("user-game-progress")
+        .updateOne(query, pushArray)
+    client.close()
+};

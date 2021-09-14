@@ -5,7 +5,7 @@ import { MyDDBB, URL } from '../config/bbdd.js'
 const COLLECTION_NAME = 'user-register'
 
 
-export const findUserInfoById = async (email) => {
+export const getUserInfo = async (email) => {
     const client = await MongoClient.connect(URL);
     const user = await client
         .db(MyDDBB)

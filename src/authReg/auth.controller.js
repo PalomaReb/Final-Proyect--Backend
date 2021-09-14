@@ -19,8 +19,8 @@ export const registerUserController = async (req, res) => {
 
     insertToken(req.body.email, encodedToken,);
 
-    sendMail(req.body.email, 'WELCOME??????????????', '<p><b>Hello user</p>' +
-        `<p> If you want to survive, click on this link. <a href="http://localhost:3000/login?token=${encodedToken}">LINK</a>`)
+    sendMail(req.body.email, 'Bienvenido...?', '<p><b>Hola usuario</p>' +
+        `<p> Si quieres sobrevivir, haz click en este  <a href="http://localhost:3000/login?token=${encodedToken}"> link </a>`)
     res.send('check')
 }
 export const validateUserController = async (req, res) => {
@@ -56,7 +56,8 @@ export const loginJWTController = async (req, res) => {
         const token = jwt.sign({ user: email }, secret);
         //devolverselo al usuario en una propiedad llamada access_token
         res.send({
-            access_token: token
+            access_token: token,
+            email,
         });
     } else {
         res.status(404).send('Usuario/Contraseña erróneos');

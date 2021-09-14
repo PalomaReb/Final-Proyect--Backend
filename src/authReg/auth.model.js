@@ -85,7 +85,6 @@ export const deleteToken = async (user) => {
         id: user.id,
 
     };
-
     const client = await MongoClient.connect(URL);
     const data = await client
         .db("FinalProyectDDBB")
