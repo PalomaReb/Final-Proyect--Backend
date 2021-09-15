@@ -21,7 +21,7 @@ export const progressController = (req, res) => {
 
 export const updateUserGamePoints = (req, res) => {
     updateUserArraybyID(req.email, req.body.gameList[0]);
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).send('user updated succesfully')
 
 }

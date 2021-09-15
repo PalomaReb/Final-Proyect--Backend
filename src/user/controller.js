@@ -1,12 +1,12 @@
-import { getUserInfo, updateUser } from './user.model.js'
+import { getUserInfo, updateUser, postUserReview } from './user.model.js'
 
 export const getUserInfoController = async (req, res) => {
     console.log(`Obteniendo la información del usuario: ${req.email}`); // este property existe porque lo puso el middleware de auth
-    const user = await getUserInfo(req.email, req.alias);
-    if (user !== null) {
+    const user = await getUserInfo(req.email);
+    if (user !== undefined) {
         res.send(user);
     } else {
-        res.status(404).send();
+        res.status(404).send('no lo encuentro');
     }
 }
 
@@ -17,3 +17,8 @@ export const updateUserController = async (req, res) => {
     res.send();
 }
 
+export const addUserReview = async (req, res) => {
+    console.log('')
+    postUserReview(req.body.alias, req.body.review)
+    res.send('review mandado')
+}

@@ -3,14 +3,17 @@ import { MyDDBB, URL } from '../config/bbdd.js'
 
 
 const COLLECTION_NAME = 'user-register'
-
+const REVIEW_COLLECTION = 'user-review'
 
 export const getUserInfo = async (email) => {
+    const loginValue = {
+        email,
+    };
     const client = await MongoClient.connect(URL);
     const user = await client
         .db(MyDDBB)
         .collection(COLLECTION_NAME)
-        .findOne({ email })
+        .findOne(loginValue)
     client.close();
     return user
 }
@@ -43,5 +46,19 @@ export const updateUser = async (email, partialUser) => {
         .db(MyDDBB)
         .collection(COLLECTION_NAME)
         .updateOne({ email }, updateUserObj)
+    client.close()
+}
+
+export const postUserReview = async (user, review) => {
+    const newReview = {
+        user,
+        review,
+    }
+
+    const client = await MongoClient.connect(URL);
+    await client
+        .db(MyDDBB)
+        .collection(REVIEW_COLLECTION)
+        .insertOne(newReview)
     client.close()
 }

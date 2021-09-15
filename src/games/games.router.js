@@ -1,8 +1,11 @@
 import express from 'express'
 import { gameController, progressController, updateUserGamePoints } from './games.controller.js';
+// import { validateJWTAuth } from '../authReg/auth.middleware.js';
 
 
 const gamesRouter = express.Router();
+
+// gamesRouter.use(validateJWTAuth);
 
 
 gamesRouter.route('/:id')
