@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUserInfoController, addUserReview } from './controller.js'
+import { getUserInfoController, addUserReview, getReviewsController } from './controller.js'
 import { validateJWTAuth } from '../authReg/auth.middleware.js';
 
 
@@ -14,6 +14,7 @@ userRouter.route('/userInfo')
 
 userRouter.route('/reviews')
     .post(addUserReview)
+    .get(getReviewsController)
 
 
 export default userRouter;

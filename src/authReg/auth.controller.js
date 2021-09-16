@@ -1,4 +1,4 @@
-import { createUser, insertToken, validateToken, updateTokenUser, deleteToken } from "./auth.model.js"
+import { createUser, insertToken, validateToken, updateTokenUser, deleteToken, validateReg } from "./auth.model.js"
 import { generateRandomEmailToken, encodePassword } from "./crypto.js";
 import { getUserInfoByIdAndPassword } from '../user/user.model.js'
 import jwt from "jsonwebtoken";
@@ -51,13 +51,14 @@ export const loginJWTController = async (req, res) => {
     // obtengo la información de mi modelo del usuario por email
     const userInfo = getUserInfoByIdAndPassword(email, passEncoded);
     // compruebo que exista el usuario y que las password coincidan 
+    console.log(userInfo);
     if (userInfo !== null) {
         // generar un token JWT 
         const token = jwt.sign({ user: email }, secret);
         //devolverselo al usuario en una propiedad llamada access_token
         res.send({
             access_token: token,
-            email,
+            // email,
         });
     } else {
         res.status(404).send('Usuario/Contraseña erróneos');

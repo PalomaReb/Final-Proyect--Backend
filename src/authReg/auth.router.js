@@ -5,6 +5,7 @@ import { loginJWTController, registerUserController, validateUserController } fr
 
 const router = express.Router();
 
+
 router.route('/register')
     .post(isValidateReg, registerUserController); // es un post porque creo un usuario
 
@@ -12,6 +13,6 @@ router.route('/validate')
     .get(validateUserController); // es un get porque me dice si es válido o no
 
 router.route('/login')
-    .post(loginJWTController)
+    .post(loginJWTController);
 
 export default router;

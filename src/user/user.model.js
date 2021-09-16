@@ -62,3 +62,17 @@ export const postUserReview = async (user, review) => {
         .insertOne(newReview)
     client.close()
 }
+
+export const retrievalReviews = async () => {
+
+    const client = await MongoClient.connect(URL);
+    const data = await client
+        .db(MyDDBB)
+        .collection(REVIEW_COLLECTION)
+        .find().toArray()
+    client.close()
+
+    return data
+}
+
+
