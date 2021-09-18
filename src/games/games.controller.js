@@ -1,7 +1,6 @@
 import { findGameById, insertUserProgressInDDBB, updateUserArraybyID } from './games.model.js'
 
 export const gameController = async (req, res) => {
-    console.log(req.params.id)
     const game = await findGameById(req.params.id);
     if (game !== null) {
         // enviar al cliente el juego
@@ -21,7 +20,18 @@ export const progressController = (req, res) => {
 
 export const updateUserGamePoints = (req, res) => {
     updateUserArraybyID(req.email, req.body.gameList[0]);
-    console.log(req.body);
     res.status(200).send('user updated succesfully')
 
 }
+
+export const UserGameInfoController = async (req, res) => {
+    console.log('voy por los datos');
+    const user = await findUserLastGame(req.email);
+    if (user !== undefined) {
+        res.send(user);
+        console.log('tengo los datos');
+    } else {
+        res.status(404).send('no lo encuentro');
+    };
+}
+

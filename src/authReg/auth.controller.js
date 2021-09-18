@@ -25,12 +25,12 @@ export const registerUserController = async (req, res) => {
 }
 export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no
-    const email = await validateToken(req.query.token);
+    const user = await validateToken(req.query.token);
     // si existe email es que es válido, sino no es válido
-    if (email !== null) {
+    if (user !== null) {
         // actualizo el estado del usuario en BBDD a SUCCESS
-        updateTokenUser(email);
-        deleteToken(email)
+        updateTokenUser(user);
+        deleteToken(user.email);
         //devuelvo al cliente un 200
         res.status(200).send();
     } else {

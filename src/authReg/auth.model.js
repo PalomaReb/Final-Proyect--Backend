@@ -6,11 +6,10 @@ import { URL, MyDDBB } from '../config/bbdd.js'
 //--------------modelReg---------------------------------
 
 
-export const validateReg = async (user, password) => {
+export const validateReg = async (user) => {
     const loginValue = {
         email: user,
-        password,
-        type: 'SUCCESS'
+        type: 'SUCCESS',
     };
     const client = await MongoClient.connect(URL);
     const data = await client
@@ -18,6 +17,7 @@ export const validateReg = async (user, password) => {
         .collection("user-register")
         .findOne(loginValue)
     client.close();
+    console.log(data)
     return data !== null;
 }
 
@@ -82,16 +82,16 @@ export const updateTokenUser = async (user) => {
 }
 
 
-export const deleteToken = async (token) => {
+export const deleteToken = async (email) => {
     const tokenDelete = {
-        token
+        email
     };
     try {
         const client = await MongoClient.connect(URL);
-        const result = await client
-            .db("FinalProyectDDBB")
-            .collection("user-token")
-            .deleteOne(tokenDelete)
+        const result = await client.db("FinalProyectDDBB").collection("user-token").deleteOne(tokenDelete)
+            .then(r => console.log('Borrado'))
+            .catch(err => console.error('Hubo un error aquí'))
+        //console.log(result);
     }
     catch (error) {
         console.log(error);
