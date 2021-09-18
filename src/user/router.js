@@ -6,14 +6,15 @@ import { validateJWTAuth } from '../authReg/auth.middleware.js';
 
 const userRouter = express.Router();
 
-userRouter.use(validateJWTAuth);
 
 userRouter.route('/userInfo')
-    .get(getUserInfoController); // es un get para obtener los datos del usuario
+    .get(validateJWTAuth, getUserInfoController); // es un get para obtener los datos del usuario
 
 
 userRouter.route('/reviews')
-    .post(addUserReview)
+    .post(validateJWTAuth, addUserReview)
+
+userRouter.route('/reviews')
     .get(getReviewsController)
 
 

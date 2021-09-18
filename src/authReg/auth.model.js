@@ -82,14 +82,32 @@ export const updateTokenUser = async (user) => {
 }
 
 
-export const deleteToken = async (email) => {
-    const loginValue = {
-        email,
-
+export const deleteToken = async (token) => {
+    const tokenDelete = {
+        token
     };
-    const client = await MongoClient.connect(URL);
-    await client
-        .db("FinalProyectDDBB")
-        .collection("user-token")
-        .deleteOne(loginValue)
+    try {
+        const client = await MongoClient.connect(URL);
+        const result = await client
+            .db("FinalProyectDDBB")
+            .collection("user-token")
+            .deleteOne(tokenDelete)
+    }
+    catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+    finally {
+        if (client !== undefined) {
+            await client.close()
+        }
+    }
 }
+
+
+// export const validateToken = async (token) => {
+//     const email = await retrieveEmailByToken(token);
+//     if (email) deleteToken(token);
+//     console.log('email', email);
+//     return email;
+// }

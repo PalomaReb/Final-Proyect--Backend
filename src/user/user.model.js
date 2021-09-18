@@ -49,10 +49,12 @@ export const updateUser = async (email, partialUser) => {
     client.close()
 }
 
-export const postUserReview = async (user, review) => {
+export const postUserReview = async (user, alias, review) => {
     const newReview = {
         user,
+        alias,
         review,
+
     }
 
     const client = await MongoClient.connect(URL);
@@ -64,15 +66,12 @@ export const postUserReview = async (user, review) => {
 }
 
 export const retrievalReviews = async () => {
-
     const client = await MongoClient.connect(URL);
     const data = await client
         .db(MyDDBB)
         .collection(REVIEW_COLLECTION)
         .find().toArray()
     client.close()
-
     return data
 }
-
 

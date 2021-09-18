@@ -12,20 +12,19 @@ export const getUserInfoController = async (req, res) => {
 
 
 export const updateUserController = async (req, res) => {
-    console.log(`Actualizando la información del usuario: ${req.email}`); // este property existe porque lo puso el middleware de auth
     updateUser(req.email, req.body);
     res.send();
 }
 
 export const addUserReview = async (req, res) => {
-    console.log('')
-    postUserReview(req.email, req.body.review)
+    postUserReview(req.email, req.body.alias, req.body.review)
     res.send('review mandado')
 }
 
 export const getReviewsController = async (req, res) => {
     console.log('yendo por el review')
-    const arrayReviews = retrievalReviews()
+    const arrayReviews = await retrievalReviews()
+    console.log(arrayReviews)
     if (arrayReviews.length > 0) {
         res.status(200).send(arrayReviews)
     }

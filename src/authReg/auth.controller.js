@@ -1,4 +1,4 @@
-import { createUser, insertToken, validateToken, updateTokenUser, deleteToken, validateReg } from "./auth.model.js"
+import { createUser, insertToken, validateToken, updateTokenUser, deleteToken } from "./auth.model.js"
 import { generateRandomEmailToken, encodePassword } from "./crypto.js";
 import { getUserInfoByIdAndPassword } from '../user/user.model.js'
 import jwt from "jsonwebtoken";
@@ -25,9 +25,7 @@ export const registerUserController = async (req, res) => {
 }
 export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no
-    console.log(req.query.token);
     const email = await validateToken(req.query.token);
-    console.log(email)
     // si existe email es que es válido, sino no es válido
     if (email !== null) {
         // actualizo el estado del usuario en BBDD a SUCCESS
