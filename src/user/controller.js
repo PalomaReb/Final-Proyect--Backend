@@ -21,7 +21,6 @@ export const addUserReview = async (req, res) => {
 }
 
 export const getReviewsController = async (req, res) => {
-    console.log('yendo por el review')
     const arrayReviews = await retrievalReviews()
     console.log(arrayReviews)
     if (arrayReviews.length > 0) {
