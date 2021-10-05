@@ -47,17 +47,18 @@ export const findUserLastGame = async (user) => {
     const userLastGame = {
         user,
     }
-    const orderBy = {
-        _id: -1,
+    const last = {
+        sort: {
+            _id: -1,
+        }
     }
     const client = await MongoClient.connect(URL);
     const data = await client
         .db("FinalProyectDDBB")
         .collection("user-game-progress")
-        .findOne(userLastGame, orderBy);
+        .findOne(userLastGame, last);
     client.close();
     if (data !== null) {
-        console.log('yo soy ' + data)
         return data;
     }
     //si no hay juego, crear partida nueva
