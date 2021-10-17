@@ -5,7 +5,7 @@ import progressRouter from './src/user-progress/pro.router.js'
 import express from "express";
 import cors from 'cors';
 
-const port = process.env.PORT || 5464;
+const port = process.env.port || 5464;
 
 const app = express();
 app.use(express.json());
