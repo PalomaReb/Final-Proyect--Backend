@@ -20,7 +20,7 @@ export const registerUserController = async (req, res) => {
     insertToken(req.body.email, encodedToken,);
 
     sendMail(req.body.email, 'Bienvenido...?', '<p><b>Hola usuario</p>' +
-        `<p> Si quieres sobrevivir, haz click en este  <a href="http://localhost:3000/login?token=${encodedToken}"> link </a>`)
+        `<p> Si quieres sobrevivir, haz click en este  <a href="https://code-or-die.herokuapp.com/login?token=${encodedToken}"> link </a>`)
     res.send('check')
 }
 export const validateUserController = async (req, res) => {
