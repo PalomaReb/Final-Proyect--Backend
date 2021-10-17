@@ -8,7 +8,7 @@ export const sendMail = (to, subject, content) => {
         secure: true,
         auth: {
             user: 'code.or.die2021@gmail.com',
-            pass: 'kinwhqugrlbdquf',
+            pass: 'acoggsykrwhvikbo',//'kinwhqugrlbdquf', 
         },
         tls: {
             rejectUnauthorized: false
