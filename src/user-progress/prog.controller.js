@@ -1,11 +1,9 @@
 import { findUserLastGame, insertUserProgressInDDBB, updateUserArraybyID } from './prog.model.js'
 
 export const UserGameInfoController = async (req, res) => {
-    console.log('voy por los datos');
     const user = await findUserLastGame(req.email);
     if (user !== undefined) {
         res.send(user);
-        console.log('tengo los datos');
     } else {
         res.status(404).send('no lo encuentro');
     };
