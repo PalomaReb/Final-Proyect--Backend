@@ -27,6 +27,7 @@ export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no
     const user = await validateToken(req.query.token);
     // si existe email es que es válido, sino no es válido
+    console.log(req.query.token, user);
     if (user !== null) {
         // actualizo el estado del usuario en BBDD a SUCCESS
         updateTokenUser(user);
@@ -38,7 +39,6 @@ export const validateUserController = async (req, res) => {
         // ya existe
         res.status(400).send('El token no es valido');
     }
-
 }
 export const loginJWTController = async (req, res) => {
     // deconstrucción del objeto body para quedarme con sus atributos
