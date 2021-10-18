@@ -59,5 +59,10 @@ export const findUserLastGame = async (user) => {
         .findOne(userLastGame, last);
     console.log(data);
     client.close();
-    return data;
+    if (data !== null) {
+        return data;
+    } else {
+        return false;
+
+    }
 }
