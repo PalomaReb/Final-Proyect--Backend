@@ -57,7 +57,7 @@ export const findUserLastGame = async (user) => {
         .db("FinalProyectDDBB")
         .collection("user-game-progress")
         .findOne(userLastGame, last);
-    console.log(data);
+    // console.log(data);
     client.close();
     if (data !== null) {
         return data;

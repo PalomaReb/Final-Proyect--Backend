@@ -20,10 +20,15 @@ export const getUserInfo = async (email) => {
 
 export const getUserInfoByIdAndPassword = async (email, password) => {
     const client = await MongoClient.connect(URL);
+    const searchUser = {
+        email,
+        password,
+        status: "SUCCESS",
+    };
     const user = await client
         .db(MyDDBB)
         .collection(COLLECTION_NAME)
-        .findOne({ email, password, status: 'SUCCESS' })
+        .findOne(searchUser)
     client.close();
     return user
 }

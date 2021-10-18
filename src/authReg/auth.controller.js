@@ -15,7 +15,7 @@ export const registerUserController = async (req, res) => {
     await createUser(req.body.email, passEncoded, req.body.alias);
 
     const encodedToken = generateRandomEmailToken();
-    console.log('esto es el token' + encodedToken)
+    // console.log('esto es el token' + encodedToken)
 
     insertToken(req.body.email, encodedToken,);
 
@@ -27,7 +27,7 @@ export const validateUserController = async (req, res) => {
     // llamo a mi modelo para que me diga si el token es valido o no
     const user = await validateToken(req.query.token);
     // si existe email es que es válido, sino no es válido
-    console.log(req.query.token, user);
+    // console.log(req.query.token, user);
     if (user !== null) {
         // actualizo el estado del usuario en BBDD a SUCCESS
         updateTokenUser(user);
@@ -49,8 +49,8 @@ export const loginJWTController = async (req, res) => {
     // obtengo la información de mi modelo del usuario por email
     const userInfo = await getUserInfoByIdAndPassword(email, passEncoded);
     // compruebo que exista el usuario y que las password coincidan 
-    console.log(userInfo);
-    if (userInfo !== null) {
+    // console.log(userInfo);
+    if (userInfo) {
         // generar un token JWT 
         const token = jwt.sign({ user: email }, secret);
         //devolverselo al usuario en una propiedad llamada access_token

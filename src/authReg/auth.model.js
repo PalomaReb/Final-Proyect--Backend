@@ -17,7 +17,7 @@ export const validateReg = async (user) => {
         .collection("user-register")
         .findOne(loginValue)
     client.close();
-    console.log(data)
+    // console.log(data)
     return data !== null;
 }
 
@@ -26,7 +26,7 @@ export const createUser = async (user, password, alias) => {
         email: user,
         password: password,
         alias: alias,
-        type: 'PENDING'
+        status: 'PENDING'
     };
     const client = await MongoClient.connect(URL);
     await client
@@ -41,7 +41,7 @@ export const insertToken = async (user, token) => {
         email: user,
         token: token,
     };
-    console.log(loginValue);
+    // console.log(loginValue);
     const client = await MongoClient.connect(URL);
     await client
         .db("FinalProyectDDBB")
@@ -68,7 +68,7 @@ export const updateTokenUser = async (user) => {
     };
     const pendingstatus = {
         $set: {
-            type: 'SUCCESS',
+            status: 'SUCCESS',
 
         }
 

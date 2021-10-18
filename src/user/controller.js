@@ -22,7 +22,7 @@ export const addUserReview = async (req, res) => {
 
 export const getReviewsController = async (req, res) => {
     const arrayReviews = await retrievalReviews()
-    console.log(arrayReviews)
+    // console.log(arrayReviews)
     if (arrayReviews.length > 0) {
         res.status(200).send(arrayReviews)
     }
