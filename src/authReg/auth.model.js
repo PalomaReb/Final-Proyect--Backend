@@ -86,22 +86,23 @@ export const deleteToken = async (email) => {
     const tokenDelete = {
         email
     };
-    try {
-        const client = await MongoClient.connect(URL);
-        const result = await client.db("FinalProyectDDBB").collection("user-token").deleteOne(tokenDelete)
-            .then(r => console.log('Borrado'))
-            .catch(err => console.error('Hubo un error aquí'))
-        //console.log(result);
-    }
-    catch (error) {
-        console.log(error);
-        process.exit(1);
-    }
-    finally {
-        if (client !== undefined) {
-            await client.close()
-        }
-    }
+    // try {
+    const client = await MongoClient.connect(URL);
+    const result = await client.db("FinalProyectDDBB").collection("user-token").deleteOne(tokenDelete)
+        .then(r => console.log('Borrado'))
+        .catch(err => console.error('Hubo un error aquí'))
+    client.close();
+    //console.log(result);
+    //}
+    // catch (error) {
+    //     console.log(error);
+    //     process.exit(1);
+    // }
+    // finally {
+    //     if (client !== undefined) {
+    //         await client.close()
+    //     }
+    // }
 }
 
 
