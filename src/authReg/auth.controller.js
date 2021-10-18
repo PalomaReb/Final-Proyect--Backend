@@ -47,7 +47,7 @@ export const loginJWTController = async (req, res) => {
     // codifico la password para hacer la query con lo que hay en BBDD
     const passEncoded = encodePassword(password);
     // obtengo la información de mi modelo del usuario por email
-    const userInfo = getUserInfoByIdAndPassword(email, passEncoded);
+    const userInfo = await getUserInfoByIdAndPassword(email, passEncoded);
     // compruebo que exista el usuario y que las password coincidan 
     console.log(userInfo);
     if (userInfo !== null) {
