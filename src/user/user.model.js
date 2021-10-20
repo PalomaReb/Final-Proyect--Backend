@@ -54,11 +54,12 @@ export const updateUser = async (email, partialUser) => {
     client.close()
 }
 
-export const postUserReview = async (user, alias, review) => {
+export const postUserReview = async (user, alias, review, date) => {
     const newReview = {
         user,
         alias,
         review,
+        date,
 
     }
 

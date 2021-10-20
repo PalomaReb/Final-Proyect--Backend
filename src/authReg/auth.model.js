@@ -21,12 +21,14 @@ export const validateReg = async (user) => {
     return data !== null;
 }
 
-export const createUser = async (user, password, alias) => {
+export const createUser = async (user, password, alias, date) => {
     const loginValue = {
         email: user,
         password: password,
         alias: alias,
-        status: 'PENDING'
+        status: 'PENDING',
+        date,
+
     };
     const client = await MongoClient.connect(URL);
     await client

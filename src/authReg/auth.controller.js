@@ -12,7 +12,7 @@ export const registerUserController = async (req, res) => {
 
     const passEncoded = encodePassword(req.body.password);
 
-    await createUser(req.body.email, passEncoded, req.body.alias);
+    await createUser(req.body.email, passEncoded, req.body.alias, req.body.date);
 
     const encodedToken = generateRandomEmailToken();
     // console.log('esto es el token' + encodedToken)
