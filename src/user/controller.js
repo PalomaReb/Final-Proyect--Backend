@@ -16,7 +16,7 @@ export const updateUserController = async (req, res) => {
 }
 
 export const addUserReview = async (req, res) => {
-    postUserReview(req.email, req.body.alias, req.body.review)
+    postUserReview(req.email, req.body.alias, req.body.review, req.body.date)
     res.send('review mandado')
 }
 
