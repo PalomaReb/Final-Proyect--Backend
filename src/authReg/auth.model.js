@@ -9,7 +9,7 @@ import { URL, MyDDBB } from '../config/bbdd.js'
 export const validateReg = async (user) => {
     const loginValue = {
         email: user,
-        type: 'SUCCESS',
+        status: 'SUCCESS',
     };
     const client = await MongoClient.connect(URL);
     const data = await client
