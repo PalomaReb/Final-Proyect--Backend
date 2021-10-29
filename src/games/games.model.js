@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
-
-const URL = 'mongodb+srv://palomiiiita:mypassword@cluster0.h80zk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+import { URL, MyDDBB } from '../config/bbdd.js'
 
 export const findGameById = async (id) => {
     const gameValue = {
@@ -8,7 +7,7 @@ export const findGameById = async (id) => {
     };
     const client = await MongoClient.connect(URL);
     const data = await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("games")
         .findOne(gameValue);
     client.close();

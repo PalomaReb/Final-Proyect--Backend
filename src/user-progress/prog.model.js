@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
-
-const URL = 'mongodb+srv://palomiiiita:mypassword@cluster0.h80zk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+import { URL, MyDDBB } from '../config/bbdd.js';
 
 
 export const insertUserProgressInDDBB = async (user, gameList) => {
@@ -10,7 +9,7 @@ export const insertUserProgressInDDBB = async (user, gameList) => {
     }
     const client = await MongoClient.connect(URL);
     const data = await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("user-game-progress")
         .insertOne(newGame);
     client.close();
@@ -33,11 +32,11 @@ export const updateUserArraybyID = async (user, gameList) => {
     }
     const client = await MongoClient.connect(URL)
     const player = await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("user-game-progress")
         .findOne(query, last)
     await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("user-game-progress")
         .updateOne({ _id: player._id }, pushArray)
     client.close()
@@ -54,7 +53,7 @@ export const findUserLastGame = async (user) => {
     }
     const client = await MongoClient.connect(URL);
     const data = await client
-        .db("FinalProyectDDBB")
+        .db(MyDDBB)
         .collection("user-game-progress")
         .findOne(userLastGame, last);
     // console.log(data);
